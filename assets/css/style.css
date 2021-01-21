@@ -1,0 +1,46 @@
+/* master-container must be RELATIVE, while the footer is ABSOLUTE */
+
+.master-contain {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+}
+
+#controls-wrap {
+    background-color: blue;
+    min-height: 100vh;
+    background-image: url(../images/background-controls.jpg);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+
+#game-wrap {
+    background-image: linear-gradient(to bottom right,rgb(169, 202, 214), rgb(235, 235, 235));
+    min-height: 100vh;
+    box-shadow: 2px 0px 15px rgb(65, 65, 65) inset;
+}
+
+#my-footer {
+    background-color: aqua;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+}
+
+
+
+/* Media queries */
+@media screen and (max-width: 767px) {
+    #controls-wrap {
+        min-height: 100%;
+    }
+
+    #game-wrap {
+        min-height: 100%;
+    }
+}    
