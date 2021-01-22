@@ -33,14 +33,58 @@
     left: 0;
 }
 
+.the-title {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.31);
+    border-radius: 5px;
+}
+
 /* Game board, card section */
 
 .card-box {
-    width: 100px;
-    height: 140px;
-    background-color: bisque;
-    border: 1px solid gray;
-    border-radius: 8px;
+  background-color: transparent;
+  width: 100px;
+  height: 180px;
+  border: 1px solid #f1f1f1;
+  border-radius: 4px;
+  perspective: 1000px;
+}
+
+.card-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card-box:hover .card-box-inner {
+  transform: rotateY(180deg);
+}
+
+
+.card-box-front, .card-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-box-front {
+  background-color: rgb(182, 90, 162);
+  color: black;
+}
+
+.card-box-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
 }
 
 
