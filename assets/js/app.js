@@ -6,28 +6,31 @@ let firstCard, secondCard;
 // target and flip the card when clicked
 function flipCard() {
     this.classList.add("flip");
-    
+// first click    
     if (!alreadyFlipped) {
         alreadyFlipped = true;
         firstCard = this;
-        
+// second click        
     } else {
         alreadyFlipped = false;
         secondCard = this;
-        
+        ceckMatch();
+    };
+}
+
+        function ceckMatch() {
         if (firstCard.dataset.card === secondCard.dataset.card) {
             firstCard.removeEventListener("click", flipCard);
             secondCard.removeEventListener("click", flipCard);
             console.log("match")
         } else {
+            setTimeout(function() {
             firstCard.classList.remove("flip");
             secondCard.classList.remove("flip");
-            console.log("not a match")
-
+            console.log("not a match");
+        }, 800);  // timeout helps to see the rotation of the second card
         }
-        
     };
-}
 
   
 
