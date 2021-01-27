@@ -21,15 +21,22 @@
 </head>
 
 <body>
-    
+        
     <div class="container-fluid master-contain">
         <div class="row">
             <!-- Game header/controls -->
             <div class="col-12 col-sm-12 col-md-4 col-lg-3" id="controls-wrap">
                 <header>
-                    <div class="the-title mx-auto my-4 text-center p-1"><h2>Match the cards</h2></div>
+                    <div class="the-title mx-auto my-4 text-center p-1">
+                        <h3 class="p-2">Match the cards</h3>
+                        <!-- Button trigger modal -->
+<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#userInfoModal">
+  User
+</button>
+
+<h3 class="p-2" id="user_name">Name</h3>
+                    </div>
                 </header>
-                
             </div>
 
 <!-- Game cards section -->         
@@ -147,8 +154,41 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="userInfoModal" tabindex="-1" aria-labelledby="userInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="userInfoModalLabel">Choose your name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form class="userInfoModalForm" method="POST">
+            <div class="form-group">
+                <label for="username">Type your username here</label>
+                <input type="text" class="form-control form-control-lg" name="username" id="username" maxlength="14" aria-label="Type your name here" required>
+            </div>
+        </form>
 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveName">Save changes</button>
+      </div>
     </div>
+  </div>
+</div>
+<!-- END Modal -->
+<!-- Toast WIN -->
+<div class="toast d-flex align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-body">
+      YOU WIN!
+    </div>
+      </div>
+  <!-- END Toast WIN -->
+
+</div>
 
 <!-- Scripts -->  
 

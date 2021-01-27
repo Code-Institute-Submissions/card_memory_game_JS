@@ -35,11 +35,13 @@
 
 .the-title {
   width: 100%;
-  height: 100px;
+  
   background-color: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.31);
   border-radius: 5px;
 }
+
+
 
 /* Game board, card section */
 
@@ -47,7 +49,7 @@
 background-color: transparent;
 width: 100px;
 height: 160px;
-border: 1px solid #f1f1f1;
+border: none;
 border-radius: 4px;
 perspective: 1000px;
 }
@@ -57,9 +59,16 @@ position: relative;
 width: 100%;
 height: 100%;
 text-align: center;
-transition: transform 0.6s;
+transform: scale(1);
 transform-style: preserve-3d;
+transition: transform .9s;
 box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* animation, click interaction visible */
+.card-box-inner:active {
+  transform: scale(.96);
+  transition: transform .2s;
 }
 
 /* animation of rotation */
@@ -91,7 +100,7 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 
-/*  images target data  */
+/*  images target data attributes  */
 [data-card="apple"] > .card-box-back {
   background-image: url(../images/apple.jpg);
 }
@@ -117,13 +126,11 @@ background-size: cover;
   #controls-wrap {
       min-height: 100%;
   }
-
   #game-wrap {
       min-height: 100%;
   }
-
   .card-box {
   width: 90px;
-  height: 125px;
+  height: 144px;
   }
 }    
