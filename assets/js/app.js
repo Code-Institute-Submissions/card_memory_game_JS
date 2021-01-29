@@ -4,7 +4,15 @@ let alreadyFlipped = false;
 let firstCard, secondCard;
 let matchWin = 0;
 let stopRotation = false;
+let secondsLeft = 5;
+let timer = document.getElementById("countdown");
+let stopTime = null;
+let clickCounter = 0;
+let clicks = 0;
+let run;
 
+let moves = 0;
+let counterMoves = document.querySelector('.moves');
 
 
 var localUser = localStorage.getItem($("#username").val());
@@ -22,10 +30,14 @@ localStorage.setItem("localUser", $("#username").val());
 
 
 
+
+
+
 // Wait-Listen for click
 deckCard.forEach(currentValue => currentValue.addEventListener("click", flipCard));
 // flip the card only after these conditions
 function flipCard() {
+        
     if (stopRotation) return;
     if (this === firstCard) return;
     this.classList.add("flip");
@@ -34,14 +46,19 @@ function flipCard() {
         alreadyFlipped = true;
         firstCard = this;
         console.log(firstCard);
+        
         return;
     };
 // second click     
         
         secondCard = this;
         console.log(secondCard);
-        ceckMatch();    
+        moveCounter();
+        ceckMatch();       
     };
+
+
+
 
 // The cards are not clickable, both first and second card
 function disableClick() {
@@ -99,6 +116,8 @@ function shuffle(cards) {
     }
     return cards;
 };
+
+
 shuffle(cards);
 console.log(cards);
 
@@ -109,13 +128,80 @@ function assignCardDeck() {
     });
 }
 
-//  XXX toast           XXX  XXX  XXX
+//  Toast you win
 function youWin() {
+    
     if (matchWin == 6) {setTimeout(function() {
         console.log("wiiinnnnnnnnn");
-        alert("YOU WIN");}, 800);      
+        $("#toastWin").toast('show');
+        }, 800);            
     };
 };
-function resetGame() {
+
+//  Toast you lose
+function youLose() {
+    
+    setTimeout(function() {
+        console.log("lose");
+        
+        $("#toastLose").toast('show');
+        }, 800); 
+                   
+    };
+
+
+$("#resetBtn").click(function() {
+    resetGameBtn();
+});
+function resetGameBtn() {
+    console.log("resetttaaaaa");
     matchWin = 0;
-}
+
+    deckCard.forEach(currentValue => currentValue.classList.remove("flip"));
+    
+    deckCard.forEach(currentValue => currentValue.addEventListener("click", flipCard));
+    stopRotation = false;
+    alreadyFlipped = false;
+    firstCard = null;
+    secondCard = null;
+    secondsLeft = 30;
+    clickCounter = 0;
+    moves = 0;
+    setTimeout(function() {
+        shuffle(cards);
+    }, 300);
+};
+
+
+
+// Timer, countdown
+// function timeOut() { 
+//     if (moves > 0 && secondsLeft >= 0) {   
+//         let run = setInterval(function() {
+//             timer.innerHTML =  secondsLeft;
+//             console.log(secondsLeft);
+//             secondsLeft -= 1;
+//         }, 1000);
+//     } else {
+        
+        
+//         resetGameBtn();
+//         clearInterval(run);
+        
+//     }
+// };
+
+
+
+
+
+function moveCounter() {
+    moves++;
+    counterMoves.innerHTML = moves + ' moves';
+    if (moves >= 4) {
+        stopFlippinCard();
+        youLose();
+        
+
+    }
+};
