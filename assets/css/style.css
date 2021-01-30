@@ -80,8 +80,10 @@ backface-visibility: hidden;
 }
 
 .card-box-front {
-background-color: rgb(182, 90, 162);
-color: black;
+  background-image: url(../images/cardFrontDeck.jpg);
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
 }
 
 .card-box-back {
@@ -100,7 +102,7 @@ background-size: cover;
 }
 
 .footer-logo:hover {
-  color: #00613c;
+  color: #005e61;
 }
 
 #my-footer {

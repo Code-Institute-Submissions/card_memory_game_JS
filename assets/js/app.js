@@ -4,33 +4,16 @@ let alreadyFlipped = false;
 let firstCard, secondCard;
 let matchWin = 0;
 let stopRotation = false;
-let secondsLeft = 5;
 let timer = document.getElementById("countdown");
-let stopTime = null;
-let clickCounter = 0;
-let clicks = 0;
-let run = true
 let levelMoves = 4;   // number of moves allowed
 let moves = 0;
 let counterMoves = document.querySelector('.moves');
 
 
-var localUser = localStorage.getItem($("#username").val());
-//  Modal
-if (typeof(Storage) !== "undefined") {
-// Retrieve
-  document.getElementById("username").innerHTML = localStorage.getItem("localUser");
-};
-//  --
+// Type a new user name
 $("#saveName").on("click", function() {
   $("#user_name").text( $("#username").val());
 });
-//  --
-localStorage.setItem("localUser", $("#username").val());
-
-
-
-
 
 
 // Wait-Listen for click
@@ -177,13 +160,14 @@ function resetGameBtn() {
     firstCard = null;
     secondCard = null;
     secondsLeft = 30;
-    clickCounter = 0;
+    
     moves = 0;
     $(".moves").text("0");
     setTimeout(function() {
         shuffle(cards);
     }, 400);    
 };
+
 
 function moveCounter() {
     if (moves <= levelMoves) {
@@ -192,6 +176,5 @@ function moveCounter() {
     } else {
         console.log("fuori conteggio");
         youLose();
-    }
-    
+    }    
 };
