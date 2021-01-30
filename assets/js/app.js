@@ -9,8 +9,8 @@ let timer = document.getElementById("countdown");
 let stopTime = null;
 let clickCounter = 0;
 let clicks = 0;
-let run;
-
+let run = true
+let levelMoves = 4;   // number of moves allowed
 let moves = 0;
 let counterMoves = document.querySelector('.moves');
 
@@ -37,10 +37,12 @@ localStorage.setItem("localUser", $("#username").val());
 deckCard.forEach(currentValue => currentValue.addEventListener("click", flipCard));
 // flip the card only after these conditions
 function flipCard() {
-        
+    if (moves < levelMoves) {
+       
     if (stopRotation) return;
     if (this === firstCard) return;
     this.classList.add("flip");
+    
 // first click    
     if (!alreadyFlipped) {        
         alreadyFlipped = true;
@@ -54,11 +56,17 @@ function flipCard() {
         secondCard = this;
         console.log(secondCard);
         moveCounter();
-        ceckMatch();       
-    };
+        ceckMatch();               
+} else {resetGameBtn()
+youLose();
+};
+};
 
-
-
+function noClickEvent() {
+$(".card-box-inner").each(function() {
+    $(this).off("click")
+});
+};
 
 // The cards are not clickable, both first and second card
 function disableClick() {
@@ -79,9 +87,12 @@ function disableClick() {
             disableClick();
         } else {
             stopFlippinCard();
+            
         }
         
+
         youWin();
+        
     };
 function stopFlippinCard() {
     stopRotation = true; 
@@ -139,15 +150,16 @@ function youWin() {
 };
 
 //  Toast you lose
-function youLose() {
-    
-    setTimeout(function() {
+function youLose() { 
+    deckCard.forEach(currentValue => currentValue.removeEventListener("click", flipCard));    
+        setTimeout(function() {
         console.log("lose");
         
         $("#toastLose").toast('show');
-        }, 800); 
-                   
-    };
+        }, 300); 
+         
+    };             
+    
 
 
 $("#resetBtn").click(function() {
@@ -167,41 +179,19 @@ function resetGameBtn() {
     secondsLeft = 30;
     clickCounter = 0;
     moves = 0;
+    $(".moves").text("0");
     setTimeout(function() {
         shuffle(cards);
-    }, 300);
+    }, 400);    
 };
 
-
-
-// Timer, countdown
-// function timeOut() { 
-//     if (moves > 0 && secondsLeft >= 0) {   
-//         let run = setInterval(function() {
-//             timer.innerHTML =  secondsLeft;
-//             console.log(secondsLeft);
-//             secondsLeft -= 1;
-//         }, 1000);
-//     } else {
-        
-        
-//         resetGameBtn();
-//         clearInterval(run);
-        
-//     }
-// };
-
-
-
-
-
 function moveCounter() {
+    if (moves <= levelMoves) {
     moves++;
-    counterMoves.innerHTML = moves + ' moves';
-    if (moves >= 4) {
-        stopFlippinCard();
+    counterMoves.innerHTML = moves;
+    } else {
+        console.log("fuori conteggio");
         youLose();
-        
-
     }
+    
 };
