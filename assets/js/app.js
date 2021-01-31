@@ -25,12 +25,10 @@ function flipCard() {
     if (!alreadyFlipped) {        
         alreadyFlipped = true;
         firstCard = this;
-        console.log(firstCard);        
         return;
     }
 /**  second click*/        
         secondCard = this;
-        console.log(secondCard);
         moveCounter();
         ceckMatch();               
 } else {
@@ -53,7 +51,6 @@ function disableClick() {
         function ceckMatch() {
         if (firstCard.dataset.card === secondCard.dataset.card) {
             matchWin++;
-            console.log(matchWin);
             disableClick();
         } else {
             stopFlippinCard();            
@@ -86,9 +83,8 @@ function shuffle(cards) {
     }
     return cards;
 }
-
 shuffle(cards);
-console.log(cards);
+
 /**  after the shuffle, re-assign the cards data attribute to the new cards deck*/
 function assignCardDeck() {
     $(".card-box-inner").each(function(index) {
@@ -99,7 +95,6 @@ function assignCardDeck() {
 /**   Toast you win*/
 function youWin() {    
     if (matchWin == 6) {setTimeout(function() {
-        console.log("wiiinnnnnnnnn");
         $("#toastWin").toast('show');
         }, 800);            
     }
@@ -109,7 +104,6 @@ function youWin() {
 function youLose() { 
     deckCard.forEach(currentValue => currentValue.removeEventListener("click", flipCard));    
         setTimeout(function() {
-        console.log("lose");        
         $("#toastLose").toast('show');
         }, 300);          
     }
@@ -119,7 +113,6 @@ $("#resetBtn").click(function() {
     resetGameBtn();
 });
 function resetGameBtn() {
-    console.log("resetttaaaaa");
     matchWin = 0;
     deckCard.forEach(currentValue => currentValue.classList.remove("flip"));    
     deckCard.forEach(currentValue => currentValue.addEventListener("click", flipCard));
@@ -140,7 +133,6 @@ function moveCounter() {
     moves++;
     counterMoves.innerHTML = moves;
     } else {
-        console.log("fuori conteggio");
         youLose();
     }    
 }
