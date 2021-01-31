@@ -111,8 +111,10 @@ https://fontawesome.com/
 - Win/Lose popups are centered in the viewport and show a lovely animation right after the Win/Lose event.
 - After you Lose, you are not longer able to flip the cards, so you can play again by clicking the "Reset" button.
 - Tested the external link, it opened in a new tab and went to the correct page.
+- [Lighthouse testing](assets/lighthouse.png)
 ## Code validity
 [JSHint - Javascript validator](https://jshint.com/) 
+Javascript ES6 validation
 
 [CSS Validation Service](https://jigsaw.w3.org/css-validator/) 
 This document validates as CSS level 3 + SVG 

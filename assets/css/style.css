@@ -12,20 +12,37 @@
   background-color: blue;
   min-height: 100vh;
   background-image: url(../images/background-controls.jpg);
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
 #game-wrap {
-  background-image: linear-gradient(to bottom right,rgb(169, 202, 214), rgb(235, 235, 235));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right bottom,
+    from(rgb(169, 202, 214)),
+    to(rgb(235, 235, 235))
+  );
+  background-image: -o-linear-gradient(
+    top left,
+    rgb(169, 202, 214),
+    rgb(235, 235, 235)
+  );
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(169, 202, 214),
+    rgb(235, 235, 235)
+  );
   min-height: 100vh;
+  -webkit-box-shadow: 2px 0px 15px rgb(65, 65, 65) inset;
   box-shadow: 2px 0px 15px rgb(65, 65, 65) inset;
 }
 
 .the-title {
   width: 100%;
-  
+
   background-color: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.31);
   border-radius: 5px;
@@ -35,64 +52,81 @@
   font-size: 50px;
 }
 
-
 /* Game board, card section */
 
 .card-box {
-background-color: transparent;
-width: 100px;
-height: 160px;
-border: none;
-border-radius: 4px;
-perspective: 1000px;
+  background-color: transparent;
+  width: 100px;
+  height: 160px;
+  border: none;
+  border-radius: 4px;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
 }
 
 .card-box-inner {
-position: relative;
-width: 100%;
-height: 100%;
-text-align: center;
-transform: scale(1);
-transform-style: preserve-3d;
-transition: transform .9s;
-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.9s;
+  transition: -webkit-transform 0.9s;
+  -o-transition: transform 0.9s;
+  transition: transform 0.9s;
+  transition: transform 0.9s, -webkit-transform 0.9s;
+  -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
 /* animation, click interaction visible */
 .card-box-inner:active {
-  transform: scale(.96);
-  transition: transform .2s;
+  -webkit-transform: scale(0.96);
+  -ms-transform: scale(0.96);
+  transform: scale(0.96);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  -o-transition: transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
 /* animation of rotation */
-.card-box, .flip {
-transform: rotateY(180deg);
+.card-box,
+.flip {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
-
-.card-box-front, .card-box-back {
-position: absolute;
-width: 100%;
-height: 100%;
-border-radius: 4px;
--webkit-backface-visibility: hidden;
-backface-visibility: hidden;
+.card-box-front,
+.card-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .card-box-front {
   background-image: url(../images/cardFrontDeck.jpg);
-  background-position: center; 
-  background-repeat: no-repeat; 
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
 .card-box-back {
-background-color: #2980b9;
-color: white;
-transform: rotateY(180deg);
-background-position: center; 
-background-repeat: no-repeat; 
-background-size: cover;
+  background-color: #2980b9;
+  color: white;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* footer */
@@ -107,6 +141,7 @@ background-size: cover;
 
 #my-footer {
   background-color: rgb(173, 228, 228);
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
   height: 30px;
@@ -135,17 +170,16 @@ background-size: cover;
   background-image: url(../images/cherry.jpg);
 }
 
-
 /* Media queries */
 @media screen and (max-width: 767px) {
   #controls-wrap {
-      min-height: 100%;
+    min-height: 100%;
   }
   #game-wrap {
-      min-height: 100%;
+    min-height: 100%;
   }
   .card-box {
-  width: 90px;
-  height: 144px;
+    width: 90px;
+    height: 144px;
   }
-}    
+}

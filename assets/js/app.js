@@ -4,31 +4,31 @@ let alreadyFlipped = false;
 let firstCard, secondCard;
 let matchWin = 0;
 let stopRotation = false;
-let levelMoves = 14;   // number of moves allowed
+let levelMoves = 14;   /**  number of moves allowed*/
 let moves = 0;
 let counterMoves = document.querySelector('.moves');
 
-// Type a new user name
+/**  Type a new user name*/
 $("#saveName").on("click", function() {
   $("#user_name").text( $("#username").val());
 });
 
-// Wait-Listen for click
+/**  Wait-Listen for click*/
 deckCard.forEach(currentValue => currentValue.addEventListener("click", flipCard));
-// flip the card only after these conditions
+/**  flip the card only after these conditions*/
 function flipCard() {
     if (moves < levelMoves) {       
     if (stopRotation) return;
     if (this === firstCard) return;
     this.classList.add("flip");    
-// first click    
+/**  first click*/    
     if (!alreadyFlipped) {        
         alreadyFlipped = true;
         firstCard = this;
         console.log(firstCard);        
         return;
     }
-// second click        
+/**  second click*/        
         secondCard = this;
         console.log(secondCard);
         moveCounter();
@@ -39,7 +39,7 @@ function flipCard() {
 }
 }
 
-// The cards are not clickable, both first and second card
+/**  The cards are not clickable, both first and second card*/
 function disableClick() {
     firstCard.removeEventListener("click", flipCard);
     secondCard.removeEventListener("click", flipCard);
@@ -49,7 +49,7 @@ function disableClick() {
     secondCard = null;
 }    
 
-// check if there is a match between two cards
+/**  check if there is a match between two cards*/
         function ceckMatch() {
         if (firstCard.dataset.card === secondCard.dataset.card) {
             matchWin++;
@@ -60,6 +60,7 @@ function disableClick() {
         }
         youWin();        
     }
+    
 function stopFlippinCard() {
     stopRotation = true;
     setTimeout(function() {
@@ -72,8 +73,8 @@ function stopFlippinCard() {
     }, 1400);
 }
 
-// Shuffle all 12 cards
-// Fisher-Yates shuffle algorithm logic
+/**  Shuffle all 12 cards
+*  Fisher-Yates shuffle algorithm logic*/
 function shuffle(cards) {
     let random, temp;
     for (let i = cards.length - 1; i > 0; i--) {
@@ -84,18 +85,18 @@ function shuffle(cards) {
         assignCardDeck();
     }
     return cards;
-};
+}
 
 shuffle(cards);
 console.log(cards);
-// after the shuffle, re-assign the cards data attribute to the new cards deck
+/**  after the shuffle, re-assign the cards data attribute to the new cards deck*/
 function assignCardDeck() {
     $(".card-box-inner").each(function(index) {
         $(this).attr("data-card", cards[index]);
     });
 }
 
-//  Toast you win
+/**   Toast you win*/
 function youWin() {    
     if (matchWin == 6) {setTimeout(function() {
         console.log("wiiinnnnnnnnn");
@@ -104,7 +105,7 @@ function youWin() {
     }
 }
 
-//  Toast you lose
+/**   Toast you lose*/
 function youLose() { 
     deckCard.forEach(currentValue => currentValue.removeEventListener("click", flipCard));    
         setTimeout(function() {
@@ -113,6 +114,7 @@ function youLose() {
         }, 300);          
     }
 
+/**   Button that reset the game. Game start point*/
 $("#resetBtn").click(function() {
     resetGameBtn();
 });
@@ -132,6 +134,7 @@ function resetGameBtn() {
     }, 400);    
 }
 
+/**   Counter of moves*/
 function moveCounter() {
     if (moves <= levelMoves) {
     moves++;
